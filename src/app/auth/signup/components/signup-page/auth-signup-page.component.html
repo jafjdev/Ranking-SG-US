@@ -1,0 +1,21 @@
+<div class="auth-page">
+  <div class="container">
+    <div class="row auth-form-wrapper">
+      <div class="col-12 col-lg-7 col-xl-6">
+        <h1 class="auth-title">Crea una nueva cuenta!</h1>
+        <app-auth-signup-form [redirectUrl]="'/user'"></app-auth-signup-form>
+        <div class="auth-alt-options">
+          <a class="btn btn-link secondary-call-to-action-btn" [routerLink]="['/login']">
+            Tienes una cuenta?
+          </a>
+        </div>
+<!--         <div class="auth-form-divider">
+          <span class="divider-text">OR</span>
+        </div>
+        <button class="btn btn-block social-alternative-btn" (click)="redirectAccount()">
+          SIGN UP WITH FACEBOOK
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>
