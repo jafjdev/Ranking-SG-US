@@ -3,29 +3,49 @@
 @import '~@angular/material/theming';
 
 .mat-elevation-z2 {
-  // Adds a shadow for elevation level 2 with default color and full opacity:
   @include mat-elevation(2);
 }
 
 .mat-elevation-z8 {
-  // Adds a shadow for elevation level 2 with color #e91e63 and 80% of the default opacity:
   @include mat-elevation(2, #182f58, 0.9);
 }
 
-/* tr {
-  &:nth-child(odd) {
-    background-color: $grey2;
+mat-button-toggle {
+  &,
+  &.mat-button-toggle-group,
+  &.mat-button-toggle-standalone {
+    margin-top: 5px;
+    border: solid 1px $grey;
+    border-radius: 4px;
+    box-shadow: none;
+    color: $form-label-color;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1.8px;
+    width: 100%;
+    height: 100%;
   }
 
-  td {
-    border-top: none;
+  &.mat-button-toggle-checked {
+    background-color: $blue;
+    border-color: $blue;
+
+    .mat-button-toggle-label-content {
+      color: $white;
+    }
+  }
+
+  .mat-button-toggle-label,
+  .mat-button-toggle-label-content {
+    font-weight: normal;
+    width: 100%;
   }
 }
- */
-mat-button-toggle{
+    
+/* mat-button-toggle{
   white-space: pre-line !important;
   position: relative;
-}
+} */
 
 list-group{
   display: flex;
