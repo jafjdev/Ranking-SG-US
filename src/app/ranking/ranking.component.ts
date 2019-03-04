@@ -19,6 +19,9 @@ export interface PeriodicElement {
     {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
+
+  
+
 @Component({
   selector: 'app-ranking-page',
   templateUrl: './ranking.component.html',
@@ -28,9 +31,22 @@ export interface PeriodicElement {
   encapsulation: ViewEncapsulation.None
 })
 export class RankingComponent {
+  exchanges = ['Todos','NASDAQ','NYSE'];
+  selectedValue: string[];
+  orders = [
+    {enable: true, name: 'Price to earnings', value: 'peRatio'},
+    {enable: true, name: 'Earning Yield', value: 'ey'},
+    {enable: true, name: 'Return on A', value: 'returna'},
+    {enable: true, name: 'Return on E', value: 'returne'},
+  ];
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     dataSource = ELEMENT_DATA;
   constructor() {
+    
+  }
+
+  selectionChanged() {
+    console.log(this.selectedValue);
     
   }
 }
