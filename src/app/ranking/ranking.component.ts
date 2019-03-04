@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 
 @Component({
-  selector: 'ranking',
+  selector: 'app-ranking-page',
   templateUrl: './ranking.component.html',
   styleUrls: [
     './styles/ranking.styles.scss'

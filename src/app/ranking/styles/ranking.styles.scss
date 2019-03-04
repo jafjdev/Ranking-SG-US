@@ -1,0 +1,8 @@
+@import '../../styles/shared';
+
+app-ranking-page{
+    display: block;
+    min-height: calc(100vh - #{ $navbar-height });
+    padding-bottom: 6rem;
+  
+}
