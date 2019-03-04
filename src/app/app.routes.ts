@@ -39,6 +39,10 @@ export const rootRoutes: Routes = [
     loadChildren: './misc/about/misc-about.module#MiscAboutModule'
   },
   {
+    path: 'ranking',
+    loadChildren: './ranking/ranking.module#RankingModule'
+  },
+  {
     path: '404',
     component: Error404PageComponent
   },
