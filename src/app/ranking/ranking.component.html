@@ -122,47 +122,86 @@
       </div>
     </div>
   </div> -->
-  <select class="form-control">
-      <option disabled selected hidden value=""> -- Elige una opcion -- </option>
-      <option *ngFor="let item of exchanges" [value]="item" >{{item}}</option>
-  </select>
-  <mat-button-toggle-group #group="matButtonToggleGroup" [(value)] = "selectedValue" multiple>
-      <ng-container *ngFor="let indicator of orders;">
-          <mat-button-toggle  (change)="selectionChanged()" [value]="indicator.value" *ngIf="indicator.enable">
-              {{indicator.name}}
-          </mat-button-toggle> &nbsp;
-      </ng-container> 
-  </mat-button-toggle-group>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-  
-    
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-  
-   
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
-  
-   
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  
-  
- 
+<div class="container">
+  <div class="row">
+    <!-- justify-content-md-center -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <!--           <a class="">Exchanges</a> -->
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+              <label for="opciondropdown">Exchanges</label>
+              <select class="form-control">
 
-     
+                <option id="opciondropdown" disabled selected hidden value=""> -- Elige una opcion -- </option>
+                <option *ngFor="let item of exchanges" [value]="item">{{item}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Another filter</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Manu-1</option>
+                <option>Manu-2</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <mat-button-toggle-group #group="matButtonToggleGroup" [(value)]="selectedValue" multiple>
+        <ng-container class="col-6 d-md-none d-lg-block" *ngFor="let indicator of orders;">
+          <mat-button-toggle (change)="selectionChanged()" [value]="indicator.value" *ngIf="indicator.enable">
+            {{indicator.name}}
+          </mat-button-toggle> &nbsp;
+        </ng-container>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 table-wrapper">
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-stripes text-center">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+          <ng-container matColumnDef="uno">
+              <th mat-header-cell *matHeaderCellDef> Symbol </th>
+              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dos">
+                <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="example-element-row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+</div>

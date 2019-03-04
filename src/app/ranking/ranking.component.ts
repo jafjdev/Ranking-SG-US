@@ -39,7 +39,7 @@ export class RankingComponent {
     {enable: true, name: 'Return on A', value: 'returna'},
     {enable: true, name: 'Return on E', value: 'returne'},
   ];
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','uno','dos'];
     dataSource = ELEMENT_DATA;
   constructor() {
     

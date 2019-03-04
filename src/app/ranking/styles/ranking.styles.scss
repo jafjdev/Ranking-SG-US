@@ -1,5 +1,39 @@
 @import '../../styles/shared';
 @import 'variables';
+@import '~@angular/material/theming';
+
+.mat-elevation-z2 {
+  // Adds a shadow for elevation level 2 with default color and full opacity:
+  @include mat-elevation(2);
+}
+
+.mat-elevation-z8 {
+  // Adds a shadow for elevation level 2 with color #e91e63 and 80% of the default opacity:
+  @include mat-elevation(2, #182f58, 0.9);
+}
+
+/* tr {
+  &:nth-child(odd) {
+    background-color: $grey2;
+  }
+
+  td {
+    border-top: none;
+  }
+}
+ */
+mat-button-toggle{
+  white-space: pre-line !important;
+  position: relative;
+}
+
+list-group{
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
 app-ranking-page{
     display: block;
     min-height: calc(100vh - #{ $navbar-height });
@@ -11,15 +45,11 @@ table {
   }
   
   %td {
+    padding-top: 15px;
+    padding-bottom: 15px;
     color: $grey5;
     font-size: $font-size-xs;
     letter-spacing: $letter-spacing-xs;
-  
-    .profile-pic {
-      border-radius: 50%;
-      height: auto;
-      width: 30px;
-    }
   }
   .table-wrapper {
     overflow-y: hidden;
@@ -33,11 +63,12 @@ table {
       thead {
         tr {
           th {
-            color: $purple;
+            color: $blue;
             font-size: $font-size-sm;
             font-weight: bold;
             letter-spacing: $letter-spacing-xxs;
             text-transform: uppercase;
+            text-align: center;
           }
   
           td {
@@ -48,7 +79,6 @@ table {
   
       tbody {
         tr {
-          height: auto;
           cursor: pointer;
           transition: background-color 1s;
   
