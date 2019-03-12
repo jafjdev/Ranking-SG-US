@@ -1,81 +1,137 @@
+    
 <div class="container">
   <div class="row">
-    <!-- justify-content-md-center -->
+    <div class="col-12">
+        <div class="card">
+            <header class="row title">
+                <div class="col-xs-12">
+                    <h2 class="main-title">Filtros</h2>
+                    <hr class="line">
+                </div>
+            </header>
+            <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                  <label class="form-label form-label-big col-sm-2">EXCHANGE</label>
+                  <div class="col-sm-3">
+                    <select class="form-control" formControlName="exchange" [id]="'exchange'">
+                        <option disabled selected hidden value=""> -- Elige una opcion -- </option>
+                        <option *ngFor="let item of exchanges" [value]="item" >{{item}}</option>
+                    </select>
+                  </div>
+                <label class="form-label form-label-big col-sm-2">SECTOR</label>
+                <div class="col-sm-3">
+                    <select class="form-control" formControlName="sector" [id]="'sector'">
+                        <option disabled selected hidden value=""> -- Elige una opcion -- </option>
+                        <option value="Todos"> Todos </option>
+                        <option *ngFor="let item of sectors" [value]="item.name" >{{item.name}}</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': ((form.get('marketcap').errors) && (form.get('marketcap').dirty)) }">
+                  <label class="form-label form-label-big col-sm-2">MARKETCAP</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="marketcap" [id]="'marketcap'" placeholder="MarketCap">
+                  </div>
+                  <div class="validation-errors col-sm-10 col-sm-offset-2">
+                    <div class="help-block" *ngIf="form.get('marketcap').errors && form.get('marketcap').dirty && form.get('marketcap').errors.numValidator">
+                      MarketCap debe ser mayor que 50 millones
+                    </div>
+                  </div>
+              </div>
+                
+              <div class="form-group" [ngClass]="{ 'has-error': ((form.get('peratio').errors) && (form.get('peratio').dirty)) }">
+                <label class="form-label form-label-big col-sm-2">P/E RATIO</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" formControlName="peratio" [id]="'peratio'" placeholder="Price to earnings">
+                </div>
+                <div class="validation-errors col-sm-10 col-sm-offset-2">
+                  <div class="help-block" *ngIf="form.get('peratio').errors && form.get('peratio').dirty && form.get('peratio').errors.numValidator">
+                    El indicador Price to earnings debe ser mayor que 5
+                  </div>
+                </div>
+              </div>
+             
+              <div class="text-center">
+                  <input class="btn btn-form" type="submit" value="Filtrar" [disabled]="!form.valid">&nbsp;
+                  <input class="btn btn-form" type="reset" value="Reset" (click)="resetForm()">
+              </div>
+            </form>
+          </div> 
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-body">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-              <label for="opciondropdown">Exchanges</label>
-              <select class="form-control">
-                <option id="opciondropdown" disabled selected hidden value=""> -- Elige una opcion -- </option>
-                <option *ngFor="let item of exchanges" [value]="item">{{item}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Another filter</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Manu-1</option>
-                <option>Manu-2</option>
-              </select>
-            </div>
-          </div>
-        </div>
+          <header class="row title">
+              <div class="col-xs-12">
+                  <h2 class="main-title">Escoge un indicador</h2>
+                  <hr class="line">
+              </div>
+          </header>
+            <mat-button-toggle-group #group="matButtonToggleGroup" [(value)] = "selectedValue" multiple>
+                <ng-container *ngFor="let indicator of orders;">
+                    <mat-button-toggle  (change)="selectionChanged()" [value]="indicator.value" *ngIf="indicator.enable">
+                        {{indicator.name}}
+                    </mat-button-toggle> &nbsp;
+                </ng-container> 
+            </mat-button-toggle-group>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-12">
-      <mat-button-toggle-group #group="matButtonToggleGroup" [(value)]="selectedValue" multiple>
-        <ng-container class="mat-elevation-z8 col-6 d-md-none d-lg-block" *ngFor="let indicator of orders;">
-          <mat-button-toggle (change)="selectionChanged()" [value]="indicator.value" *ngIf="indicator.enable">
-            {{indicator.name}}
-          </mat-button-toggle> &nbsp;
-        </ng-container>
-      </mat-button-toggle-group>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12 table-wrapper">
-
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-stripes text-center">
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-        <ng-container matColumnDef="uno">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-        <ng-container matColumnDef="dos">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr class="example-element-row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+      <div class="col-xs-12 table-wrapper">
+          <table mat-table [dataSource]="dataSource1" class="table table-stripes">
+            <ng-container matColumnDef="rank">
+                <th mat-header-cell *matHeaderCellDef >RANK</th>
+                <td mat-cell *matCellDef="let element">{{dataSource1.filteredData.indexOf(element)+1}}</td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+              <td mat-cell *matCellDef="let element"><a [routerLink]="['/company', element.symbol]">{{element.symbol}}</a>  </td>
+            </ng-container>
+            <ng-container matColumnDef="latestPrice">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> PRECIO </th>
+              <td mat-cell *matCellDef="let element" ><p class="text-center"> {{element.latestPrice}} </p></td>
+            </ng-container>
+            <ng-container matColumnDef="marketcap">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> MARKETCAP </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.marketCap | marketCapPipe }}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="sector">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> SECTOR </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.sector}}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="exchange">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> EXCHANGE </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.exchange}}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="ttmEps">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> EPS(TTM) </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.ttmEps}}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="peRatio">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> P/E </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.peRatio}}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="earningYield">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> E/Y </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.earningYield}}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="returnOnEquity">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> ROE </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.returnOnEquity}}</p></td>
+            </ng-container>
+            <ng-container matColumnDef="returnOnAssets">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center"> ROA </th>
+              <td mat-cell *matCellDef="let element"><p class="text-center">{{element.returnOnAssets}}</p></td>
+            </ng-container>
+             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator #paginator class="paginator" [pageSize]="100"></mat-paginator>
+        </div>
   </div>
 
 </div>

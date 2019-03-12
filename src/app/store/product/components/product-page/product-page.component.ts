@@ -20,7 +20,6 @@ import { AuthService } from '../../../../auth/services/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ProductPageComponent implements OnInit {
-  loggedInObservable: Observable<boolean>;
   signinModal: BsModalRef;
   signupModal: BsModalRef;
 
@@ -36,7 +35,7 @@ export class ProductPageComponent implements OnInit {
     private modalService: BsModalService,
     private authService: AuthService
   ) {
-    this.loggedInObservable = authService.loggedInObservable();
+    
   }
 
   ngOnInit(): void {

@@ -5,5 +5,13 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://localhost:4200'
+  BASE_URL: 'http://localhost:4200',
+  firebase: {
+    apiKey: "AIzaSyBFc6CmLLZYliPnvhk8Bwdoz0dYuveHGRE",
+    authDomain: "market-datamanu.firebaseapp.com",
+    databaseURL: "https://market-datamanu.firebaseio.com",
+    projectId: "market-datamanu",
+    storageBucket: "market-datamanu.appspot.com",
+    messagingSenderId: "157510666122"
+  }
 };

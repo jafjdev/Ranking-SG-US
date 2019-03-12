@@ -11,18 +11,5 @@
     <label [attr.for]="'password'" class="auth-form-label">Contraseña</label>
     <input type="password" class="form-control auth-form-input" formControlName="password" [id]="'password'" placeholder="&#10033; &#10033; &#10033; &#10033; &#10033;">
   </div>
-<!--   <div class="custom-control custom-checkbox auth-form-checkbox">
-    <input type="checkbox" formControlName="newsletter" class="custom-control-input" [id]="'newsletter'">
-    <label class="custom-control-label auth-form-label" [attr.for]="'newsletter'">I want to receive news about this awesome template!</label>
-  </div>
-  <div class="custom-control custom-checkbox auth-form-checkbox">
-    <input type="checkbox" formControlName="terms" class="custom-control-input" [id]="'terms'">
-    <label class="custom-control-label auth-form-label" [attr.for]="'terms'">
-      I agree to the
-      <a class="auth-form-link terms-link" target="_blank" [routerLink]="['/terms']">
-        Terms & Conditions
-      </a>
-    </label>
-  </div> -->
   <button type="submit" class="btn btn-block auth-form-submit-btn" [disabled]="!signupForm.valid">CREATE ACCOUNT</button>
 </form>

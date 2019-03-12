@@ -1,6 +1,6 @@
 <nav class="main-navbar navbar navbar-expand-lg" [ngClass]="{'not-home': !router.isActive('/', true), 'expanded': !navbarCollapsed}">
   <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true">
-    <img class="brand-logo" alt="ANGULAR STORE" title="ANGULAR STORE" src="/assets/imgs/logo.png">
+    <img class="brand-logo" alt="SYNERGY RANKING" title="SYNERGY RANKING" src="/assets/imgs/logo.png">
   </a>
   <button (click)="navbarCollapsed = !navbarCollapsed" class="navbar-toggler" type="button" [attr.aria-expanded]="!navbarCollapsed"
     aria-label="Toggle navigation">
@@ -33,24 +33,24 @@
       <li class="nav-divider d-lg-none">
         <hr class="divider-line">
       </li>
-      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async) === false" routerLinkActive="active"
+      <li class="nav-item user-action-item" routerLinkActive="active"
         (click)="navbarCollapsed = true">
         <a class="nav-link" [routerLink]="['/create-account']">
           Join
         </a>
       </li>
-      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async) === false" routerLinkActive="active"
+      <li class="nav-item user-action-item" routerLinkActive="active"
         (click)="navbarCollapsed = true">
         <a class="nav-link" [routerLink]="['/login']">
           Login
         </a>
       </li>
-      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async)" routerLinkActive="active" (click)="navbarCollapsed = true">
+      <li class="nav-item user-action-item" routerLinkActive="active" (click)="navbarCollapsed = true">
         <a class="nav-link" [routerLink]="['/user']">
           Account
         </a>
       </li>
-      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async)" (click)="navbarCollapsed = true">
+      <li class="nav-item user-action-item" (click)="navbarCollapsed = true">
         <a class="nav-link" (click)="logout()">
           Logout
         </a>

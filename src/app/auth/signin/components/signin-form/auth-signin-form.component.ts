@@ -33,25 +33,14 @@ export class AuthSigninFormComponent {
   }
 
   onSubmit(): void {
-    this.doSignin(this.signinForm.value.email, this.signinForm.value.password, true);
+    this.doSignin(this.signinForm.value.email, this.signinForm.value.password);
   }
 
-  doSignin(email: string, password: string, rememberMe: boolean): void {
-    this.authService.signin(email, password, rememberMe)
-    .subscribe(
-      res => {
-        this.success.emit(true);
-        this.signinForm.reset();
-
-        if (this.redirectUrl) {
-          setTimeout(() => {
-            return this.router.navigate([this.redirectUrl]);
-          }, 500);
-        }
-      },
-      err => {
-        this.success.emit(false);
-      }
-    );
+  doSignin(email: string, password: string): void {
+    this.authService.signin(email, password)
+    .then(() => {
+      this.router.navigate(['/ranking']);
+  })
+  .catch(error => console.log(error));
   }
 }

@@ -41,6 +41,38 @@ mat-button-toggle {
     width: 100%;
   }
 }
+
+.paginator {
+  //material paginator
+  .mat-paginator-page-size {
+    align-items: center;
+  }
+
+  .mat-paginator-page-size-label {
+    color: $purple;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+
+  .mat-paginator-page-size-select {
+    margin: 0px;
+
+    .mat-form-field-wrapper {
+      padding: 0px;
+      text-align: center;
+
+      .mat-form-field-underline {
+        display: none;
+      }
+    }
+  }
+
+  .mat-paginator-range-actions {
+    color: $purple;
+    font-size: 14px;
+  }
+}
     
 /* mat-button-toggle{
   white-space: pre-line !important;

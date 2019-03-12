@@ -30,32 +30,18 @@ export class AuthSignupFormComponent {
         Validators.required
       ])),
       password: new FormControl('', Validators.required),
-      newsletter: new FormControl(false),
-      terms: new FormControl(false, Validators.pattern('true'))
     });
   }
 
   onSubmit(): void {
-    this.doSignup(this.signupForm.value.name, this.signupForm.value.email,
-      this.signupForm.value.password, this.signupForm.value.newsletter);
+    this.doSignup( this.signupForm.value.email, this.signupForm.value.password);
   }
 
-  doSignup(name: string, email: string, password: string, newsletter: boolean): void {
-    this.authService.signup(name, email, password, newsletter)
-    .subscribe(
-      res => {
-        this.success.emit(true);
-        this.signupForm.reset();
-
-        if (this.redirectUrl) {
-          setTimeout(() => {
-            return this.router.navigate([this.redirectUrl]);
-          }, 500);
-        }
-      },
-      err => {
-        console.log('There was an ERROR while creating the account');
-      }
-    );
+  doSignup(email: string, password: string): void {
+    this.authService.signup(email, password)
+    .then(() => {
+      this.router.navigate(['/ranking']);
+    })
+    .catch(error => console.log(error));
   }
 }

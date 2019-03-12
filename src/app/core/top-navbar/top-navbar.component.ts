@@ -13,23 +13,15 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 export class TopNavbarComponent {
   navbarCollapsed = true;
-  loggedInObservable: Observable<boolean>;
 
   constructor(public router: Router, private authService: AuthService) {
-    this.loggedInObservable = authService.loggedInObservable();
+    
   }
 
   logout(): void {
     this.authService.logout()
-    .subscribe(
-      res => {
-        setTimeout(() => {
-          return this.router.navigate(['/']);
-        }, 500);
-      },
-      err => {
-        console.log('Could\'t log out the user');
-      }
-    );
+    .then(() => {
+      this.router.navigate(['/login']);
+    }).catch(error => console.log(error));
   }
 }

@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule } from '@angular/router';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AppComponent } from './app.component';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
@@ -22,6 +26,11 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, 
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
     HttpClientModule,
     RouterModule.forRoot(rootRoutes, {
       // enableTracing :true, // For debugging

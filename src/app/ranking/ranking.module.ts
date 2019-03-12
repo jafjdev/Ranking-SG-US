@@ -7,18 +7,24 @@ import { SharedModule } from '../shared';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { RankingResolver } from './ranking.resolver';
+import { MarketcapPipe } from './marketcap-pipe';
 
 export const rankingRoutes = [
   {
     path: '',
     component: RankingComponent,
-    canActivate: [ AuthService ]
+    canActivate: [ AuthService ],
+     resolve: {
+      comapaniesData: RankingResolver
+    }
   }
 ];
 
 @NgModule({
   declarations: [
-    RankingComponent
+    RankingComponent,
+    MarketcapPipe
   ],
   imports: [
     RouterModule.forChild(rankingRoutes),
@@ -28,6 +34,6 @@ export const rankingRoutes = [
     MatPaginatorModule,
     MatButtonToggleModule
   ],
-  providers: []
+  providers: [RankingResolver]
 })
 export class RankingModule { }
